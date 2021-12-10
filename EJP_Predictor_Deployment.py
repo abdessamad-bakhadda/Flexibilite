@@ -4,6 +4,11 @@ import matplotlib.pyplot as plt  # visualisation
 import seaborn as sns  # visualisation
 import imblearn
 
+from sklearn.preprocessing import StandardScaler
+from sklearn.impute import KNNImputer
+from imblearn.combine import SMOTETomek
+from xgboost import XGBClassifier
+
 
 function_to_apply = np.log
 
@@ -44,9 +49,7 @@ def df_x_y(X_us, y_us, labels):
     return X_us, y_us
 
 
-from sklearn.preprocessing import StandardScaler
-from sklearn.impute import KNNImputer
-from imblearn.combine import SMOTETomek
+
 
 scaler = StandardScaler()
 imputer = KNNImputer(n_neighbors=2, weights="uniform")
@@ -80,7 +83,7 @@ def preprocess(df, past_or_future, function_to_apply=None):
     return df_balanced
 
 
-from xgboost import XGBClassifier
+
 
 model = XGBClassifier(n_estimators=1000, learning_rate=0.05)
 from sklearn.compose import ColumnTransformer
